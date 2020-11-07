@@ -3,18 +3,30 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 import InfoBox from './InfoBox';
 import Map from './Map'
+import Table from './Table';
+import { sortData } from './util';
+import LineGraph from './LineGraph';
 
 function App() {
 
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState('worldwide');
   const [countryInfo, setCountryInfo] = useState({});
+  const [tableData, setTableData] = useState([]);
 
 
   //STATE = How to write a variable in REACT
 
   // https://disease.sh/v3/covid-19/countries
   //USEEFFECT = Runs a piece of code based on a given condition
+  
+  useEffect(() => {
+    fetch("https://disease.sh/v3/covid-19/all")
+    .then(response => response.json())
+    .then(data => {
+      setCountryInfo(data);
+    });
+  }, []);
 
   useEffect(() => {
     // async => send a request, wait for it, do something with it
@@ -28,12 +40,14 @@ function App() {
             value: country.countryInfo.iso2
           }
         ));
-
+        
+        const sortedData = sortData(data);
+        setTableData(sortedData);
         setCountries(countries);
       }) 
     }
     getCountriesData();
-  }, [])
+  }, []);
 
   const onCountryChange = async (event) => {
     const countryCode = event.target.value;
@@ -91,8 +105,10 @@ function App() {
         <CardContent>
           {/* Table */}
           <h3>Live Cases by Country</h3>
+          <Table countries={tableData} />
           {/* Graph */}
           <h3>Worldwide new Cases</h3>
+          <LineGraph />
         </CardContent>
       </Card>
 
