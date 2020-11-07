@@ -3,7 +3,7 @@ import { Line } from 'react-chartjs-2';
 import numeral from 'numeral';
 
 const options = {
-    Legend: {
+    legend: {
         display: false,
     },
     elements: {
@@ -65,7 +65,7 @@ const buildChartData = (data, casesType = 'cases') => {
     return chartData;
 }
 
-function LineGraph() {
+function LineGraph({casesType = 'cases'}) {
 
     const [data, setData] = useState({});
 
@@ -85,7 +85,7 @@ function LineGraph() {
 
     fetchData();
 
-    }, [])
+    }, [casesType])
 
     return (
         <div>
