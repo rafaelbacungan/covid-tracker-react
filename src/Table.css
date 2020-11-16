@@ -6,7 +6,7 @@
 }
 
 .table tr:nth-of-type(odd) {
-    background-color: orange;
+    background-color:white;
 }
 
 .table tr {

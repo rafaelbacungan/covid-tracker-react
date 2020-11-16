@@ -8,6 +8,7 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  
 }
 
 .app__stats {
@@ -16,13 +17,24 @@
 }
 
 body {
-  background-color: #f5f6fa;
+  
 }
 
 .app {
   display: flex;
   justify-content: space-evenly;
   padding: 20;
+}
+
+.dropdown__color {
+  
+}
+
+h1 {
+  
+}
+FormControl {
+  background-color: white;
 }
 
 .app__left {
